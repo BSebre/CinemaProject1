@@ -1,0 +1,37 @@
+﻿@model List<CinemaLogic.DB.Movie>
+
+@if (Model.Count == 0)
+{
+    <b>No available movies!</b>
+}
+else
+{
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Director</th>
+                <th scope="col">Year</th>
+                <th scope="col">Category</th>
+                <th style="text-align: center">Available Time</th>
+            </tr>
+        </thead>
+        @foreach (var movie in Model)
+        {
+            <tbody>
+                <tr>
+                    <th scope="row">@movie.Id</th>
+                    <td>@movie.Title</td>
+                    <td>@movie.Director</td>
+                    <td>@movie.Year</td>
+                    <td>@movie.CategoryId</td>
+                    <td style="text-align: center; color: green; font-weight: bold;">@movie.AvailableTime</td>
+                    <th><a asp-controller="Movie" asp-action="TakeBook" asp-route-title="@movie.Title">Book</a></th>
+                </tr>
+            </tbody>
+        }
+
+    </table>
+
+}
